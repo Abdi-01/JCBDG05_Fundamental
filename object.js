@@ -49,3 +49,25 @@ let cart = [
 ]
 
 console.table(cart)
+
+// Class : blueprint/cetakan yang nantinya akan menghasilkan data objek
+
+
+
+class Manusia {
+    constructor(_nama, _gender, _tglLahir, _usia) {
+        this.nama = _nama
+        this.gender = _gender
+        this.tglLahir = _tglLahir
+        this.usia = _usia
+    }
+}
+
+let manusia = [
+    { nama: 'Abdi', gender: 'L', tglLahir: '20 Januari', usia: 25 }
+]
+
+console.log(manusia)
+
+manusia.push(new Manusia('Aldo', 'L', '17 April', 25))
+console.log(manusia[1].nama)

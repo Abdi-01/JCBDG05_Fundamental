@@ -16,9 +16,9 @@
 
     // Object
     let produk = [
-        { nama: 'Oreo', stock: 50, price: 9000 },
-        { nama: 'Milo', stock: 60, price: 5000 },
-        { nama: 'Kitkat', stock: 20, price: 16000 },
+        { nama: 'Oreo', stock: 50, price: 9000 }, // index 0
+        { nama: 'Milo', stock: 60, price: 5000 }, // index 1
+        { nama: 'Kitkat', stock: 20, price: 16000 } // index 2
     ]
 
     function printListForEach() {
@@ -26,20 +26,48 @@
         produk.forEach((value, index) => {
             list += `${index + 1}. ${value.nama} Stock = ${value.stock} Rp. ${value.price.toLocaleString()}\n`
         })
-        return list
+        return list // me-return string
     }
-
-    function printListMap() {
-        let list = produk.map((value, index) => {
-            return `${index + 1}. ${value.nama} Stock = ${value.stock} Rp. ${value.price.toLocaleString()}`
-        })
-        return list
-    }
-
     // console.log(printListForEach())
-    // alert(printListForEach())
-    console.log(printListMap())
-    alert(printListMap().join('\n'))
+    alert(printListForEach())
 
+    // function printListMap() {
+    //     let list = produk.map((value, index) => {
+    //         return `${index + 1}. ${value.nama} Stock = ${value.stock} Rp. ${value.price.toLocaleString()}`
+    //     })
+    //     return list // me-return array baru dari map
+    // }
 
+    // console.log(printListMap())
+    // alert(printListMap().join('\n'))
+
+    // Tambah produk
+    // versi 1
+    // let inProduk = prompt('Masukkan Nama : ')
+    // let inStock = parseInt(prompt('Masukkan Stock : '))
+    // let inPrice = parseInt(prompt('Masukkan Harga : '))
+
+    // produk.push({ nama: inProduk, stock: inStock, price: inPrice })
+
+    // versi 2
+    while (true) {
+        let menu = prompt(`Selamat datang di Tokoku
+        1. Tambah Produk
+        2. Beli Produk
+        3. Cek Stock`)
+
+        if (menu == 1) {
+            let nama = prompt('Masukkan Nama : ')
+            let stock = parseInt(prompt('Masukkan Stock : '))
+            let price = parseInt(prompt('Masukkan Harga : '))
+
+            produk.push({ nama, stock, price })
+            alert(`${nama} Sudah Terdaftar ✅\n${printListForEach()}`)
+        } else if (menu == 2) {
+            let pilihProduk = parseInt(prompt(`Silahkan pilih produk :\n${printListForEach()}`))
+
+            let qty = parseInt(prompt(`Beli ${produk[pilihProduk - 1].nama} berapa ?`))
+        }
+
+    }
 </script>
