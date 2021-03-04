@@ -1,0 +1,22 @@
+<script>
+    // Aplikasi belajar
+    // Ada menu untuk memilih : penjumlahan, pengurang, perkalian, pembagian
+    // Setiap selesai melakukan operasi hitungan, confirm mau hitung lagi atau tidak. Jika iya, dia akan mengulang dimenu tersebut
+    // Jika tidak maka diconfirm apakah dia mau kelmbali ke menu utama, jika iya maka kembali ke opsi menu
+    // jika tidak maka akan menutup aplikasi
+
+    alert('Selamat datang di aplikasi belajar')
+
+
+    while (true) {
+        let angka1 = parseInt(prompt('Angka pertama :'))
+        let angka2 = parseInt(prompt('Angka kedua :'))
+
+        let penjumlahan = angka1 + angka2
+        alert(`Hasil penjumlahan ${angka1} + ${angka2} = ${penjumlahan}`)
+        let lanjut = confirm('Mau lanjut belajar ?')
+        if (lanjut == false){
+            break
+        }
+    }
+</script>

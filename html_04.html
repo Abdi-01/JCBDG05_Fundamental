@@ -1,0 +1,45 @@
+<script>
+
+    // Array
+    // let produkArr = [
+    //     ['Oreo', 50, 9000],
+    //     ['Milo', 60, 5000],
+    //     ['Kitkat', 20, 16000],
+    // ]
+
+    // function arrPrintListForEach() {
+    //     let list = ''
+    //     produkArr.forEach((value, index) => {
+    //         list += `${index + 1}. ${value[0]}`
+    //     })
+    // }
+
+    // Object
+    let produk = [
+        { nama: 'Oreo', stock: 50, price: 9000 },
+        { nama: 'Milo', stock: 60, price: 5000 },
+        { nama: 'Kitkat', stock: 20, price: 16000 },
+    ]
+
+    function printListForEach() {
+        let list = ''
+        produk.forEach((value, index) => {
+            list += `${index + 1}. ${value.nama} Stock = ${value.stock} Rp. ${value.price.toLocaleString()}\n`
+        })
+        return list
+    }
+
+    function printListMap() {
+        let list = produk.map((value, index) => {
+            return `${index + 1}. ${value.nama} Stock = ${value.stock} Rp. ${value.price.toLocaleString()}`
+        })
+        return list
+    }
+
+    // console.log(printListForEach())
+    // alert(printListForEach())
+    console.log(printListMap())
+    alert(printListMap().join('\n'))
+
+
+</script>
