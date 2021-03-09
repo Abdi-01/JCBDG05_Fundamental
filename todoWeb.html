@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do Web</title>
+    <style>
+        .container {
+            width: 70%;
+            /* height: 50vh; */
+            border: 1px solid black;
+            margin: 10vh auto;
+        }
+
+        input {
+            border-radius: 10%;
+            margin-right: 2vw;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 0.5vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;">To Do Web</h3>
+        <fieldset>
+            <legend>Form To Do</legend>
+            <form>
+                <label>Date :</label>
+                <input type="date" id="waktu">
+                <label>Do :</label>
+                <input type="text" id="do">
+                <label>Location :</label>
+                <input type="text" id="location">
+                <input type="button" value="Add ToDo" onclick="onBtAdd()">
+            </form>
+        </fieldset>
+        <table style="margin: auto;">
+            <thead>
+                <th style="width: 80px;">No</th>
+                <th style="width: 150px;">Date</th>
+                <th style="width: 150px;">Do</th>
+                <th style="width: 300px;">Location</th>
+                <th style="width: 150px;">Action</th>
+            </thead>
+            <tbody id="list-todo">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    let data = []
+
+    class toDo {
+        constructor(_date, _do, _location) {
+            this.date = _date
+            this.do = _do
+            this.location = _location
+        }
+    }
+
+    function onBtAdd() {
+        // ambil value dari input form
+        let waktu = document.getElementById('waktu').value
+        let kegiatan = document.getElementById('do').value
+        let lokasi = document.getElementById('location').value
+
+        // ditambahkan kevariable data menggunakan push
+        // class toDo bertindak sebagai cetakan object data
+        data.push(new toDo(waktu, kegiatan, lokasi))
+        printToDo()
+        console.log(data)
+        document.getElementById('waktu').value = null
+        document.getElementById('do').value = null
+        document.getElementById('location').value = null
+    }
+
+    function printToDo(idxEdit) {
+        let htmlElement = data.map((item, idx) => {
+            if (idxEdit == idx) {
+                return `<tr>
+            <td>${idx + 1}</td>
+            <td><input type="date" id="newWaktu" value="${item.date}"></td>
+            <td><input type="text" id="newKegiatan" value="${item.do}"></td>
+            <td><input type="text" id="newLokasi" value="${item.location}"></td>
+            <td><input type="button" value="Save"><input type="button" value="Cancel" > </td>
+                </tr>`
+            } else {
+                return `<tr>
+                <td>${idx + 1}</td>
+                <td>${item.date}</td>
+                <td>${item.do}</td>
+                <td><img src="${item.location}" alt="lokasi" width="80%"></td>
+                <td><input type="button" value="Edit" onclick="onBtEdit(${idx})"><input type="button" value="Delete" onclick="onBtDelete(${idx})"> </td>
+                    </tr>`
+            }
+        })
+
+        document.getElementById('list-todo').innerHTML = htmlElement.join('')
+    }
+
+    // fungsi delete
+    function onBtDelete(index) {
+        data.splice(index, 1)
+        printToDo()
+    }
+
+    function onBtEdit(index) {
+        printToDo(index)
+        //    Update form cara 1
+        // let newWaktu = prompt('Masukkan Tanggal Baru :', data[index].date)
+        // let newKegiatan = prompt('Masukkan Kegiatan Baru :', data[index].do)
+        // let newLokasi = prompt('Masukkan Kegiatan Baru :', data[index].location)
+
+        // if (confirm('Mau simpan perubahan ?')) {
+        //     data[index].date = newWaktu
+        //     data[index].do = newKegiatan
+        //     data[index].location = newLokasi
+        //     printToDo()
+        //     alert('Perubahan telah disimpan ✅')
+        // }
+    }
+
+    printToDo()
+</script>
+
+</html>

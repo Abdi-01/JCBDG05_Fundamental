@@ -1,0 +1,96 @@
+<!-- DOCTYPE : menunjukkan tipe document -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Untuk tampilan tab menu -->
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div id="body" style="width: 50vw;height: 50vh;background-color: coral;">
+            <h1>Pendaftaran Siswa</h1>
+            <form>
+                <div>
+                    <label for="nama">Nama :</label>
+                    <input type="text" id="nama" placeholder="Masukkan Nama">
+                </div>
+                <div>
+                    <label for="email"> Email :</label>
+                    <input type="text" id="email" placeholder="Masukkan Email">
+                </div>
+                <div>
+                    <label for="alamat"> Alamat :</label>
+                    <textarea id="alamat"></textarea>
+                </div>
+            </form>
+            <button type="button" onclick="onBtDaftar()">Daftar</button>
+            <table>
+                <thead>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Alamat</th>
+                </thead>
+                <tbody id="list-nama">
+
+                </tbody>
+            </table>
+        </div>
+    </center>
+</body>
+<script>
+    // property {nama, email, alamat}
+    let dataSiswa = [
+
+    ]
+    // fungsi untuk menyimpan data
+    function onBtDaftar() {
+        let inNama = document.getElementById('nama').value
+        let inEmail = document.getElementById('email').value
+        let inAlamat = document.getElementById('alamat').value
+        // alert(`Test input nama : ${nama} ${email} ${alamat}`)
+        // insert data with push
+        dataSiswa.push({ nama: inNama, email: inEmail, alamat: inAlamat })
+        // insert data with splice
+        // dataSiswa.splice(dataSiswa.length, 0, { nama: inNama, email: inEmail, alamat: inAlamat })
+        // dataSiswa[dataSiswa.length] = { nama: inNama, email: inEmail, alamat: inAlamat }
+        console.log(dataSiswa)
+
+        document.getElementById('nama').value = null
+        document.getElementById('email').value = null
+        document.getElementById('alamat').value = null
+        printData()
+    }
+
+    // print daftar data
+    function printData() {
+        let htmlList = ''
+        dataSiswa.forEach((value, idx) => {
+            // value = dataSiswa[i], idx = i atau index array
+            htmlList += `<tr>
+                <td>${idx + 1}</td>
+                <td>${value.nama}</td>
+                <td>${value.email}</td>
+                <td>${value.alamat}</td>
+                        </tr>`
+        })
+        // innerHTML = untuk memasukkan value kedalam element html
+        document.getElementById('list-nama').innerHTML = htmlList
+    }
+</script>
+
+</html>
